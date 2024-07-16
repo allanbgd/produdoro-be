@@ -1,1 +1,14 @@
-spring.application.name=produdoro
+server:
+  port: 8080
+  address: localhost
+
+servlet:
+  context-path: /produdoro/api
+
+spring:
+  data:
+    mongodb:
+      database: produdoro  # Nome do banco de dados MongoDB
+      authentication-database: admin
+      uri: "mongodb+srv://aluno2023:Als2503%40%40@cluster0.dv4rsg4.mongodb.net/produdoro?retryWrites=true&w=majority&appName=Cluster0"
+      auto-index-creation: true
