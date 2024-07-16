@@ -1,4 +1,4 @@
-package dev.wakandaacademy.produdoro.projeto.domain;
+package dev.wakandaacademy.produdoro.area.domain;
 
 import java.util.UUID;
 
@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder // permite a criação, quando for criado vai pegar o defaul como exemplo
 @Getter
-public class Projeto {
+public class Area {
 	@Id
 	private UUID idProjeto;
 	private String nome;
