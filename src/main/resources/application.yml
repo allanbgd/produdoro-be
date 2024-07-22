@@ -12,3 +12,7 @@ spring:
       authentication-database: admin
       uri: "mongodb+srv://aluno2023:Als2503%40%40@cluster0.dv4rsg4.mongodb.net/produdoro?retryWrites=true&w=majority&appName=Cluster0"
       auto-index-creation: true
+
+springdoc:
+swagger-ui:
+path: /swagger	
