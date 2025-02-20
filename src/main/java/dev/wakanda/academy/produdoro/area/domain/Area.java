@@ -11,20 +11,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Document(collection="Projeto")
+@Document(collection = "Area")
 @Getter
 public class Area {
-	@Id	
-	private UUID idProjeto;
+	@Id
+	private UUID idArea;
 	private String nome;
 	private String descricao;
 	@Indexed
 	private UUID idUsuario;
-	@Indexed
-	private UUID idArea;
-	
-	
+
 }
