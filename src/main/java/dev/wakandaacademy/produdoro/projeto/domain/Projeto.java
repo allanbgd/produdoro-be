@@ -10,14 +10,16 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Document(collection = "Projeto")
 @Getter
-@Document(collection = "area")
 public class Projeto {
 
     @Id
-    private UUID idArea;
+    private UUID idProjeto;
     private String nome;
     private String descricao;
     @Indexed
-    private UUID usuario;
+    private UUID idArea;
+    @Indexed
+    private UUID idUsuario;
 }
