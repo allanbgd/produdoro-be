@@ -22,6 +22,7 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <spring-doc.version>1.6.13</spring-doc.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -62,6 +63,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${spring-doc.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>javax.validation</groupId>
