@@ -1,1 +1,12 @@
-spring.application.name=produdoro
+server:
+  servlet:
+    context-path:/produdoro/api
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://Allan:jgln2PHZvN3lXAYN@cluster.o0nj2ph.mongodb.net/teste?retryWrites=true&w=majority&tls=true
+
+springdoc:
+  swagger-ui:
+    path: /swagger
