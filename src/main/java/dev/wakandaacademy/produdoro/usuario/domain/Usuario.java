@@ -18,9 +18,9 @@ import java.util.UUID;
 @Getter
 public class Usuario {
     @Id
-    private UUID idUsuario;
+    private String idUsuario;
     @Email //validação
-    @Indexed //achar campo com velocidade
+    @Indexed(unique = true)//achar campo com velocidade
     private String email;
     private ConfiguracaoUsuario configuracao;
     //usuario já começa com status em foco
@@ -30,6 +30,7 @@ public class Usuario {
     private Integer quantidadePomodorosPausaCurta = 0;
 
     public Usuario (UsuarioNovoRequest usuarioNovo, ConfiguracaoPadrao configuracaoPadrao){
+        this.idUsuario = UUID.randomUUID().toString();
         this.email = usuarioNovo.getEmail();
         this.status =StatusUsuario.FOCO;
         this.configuracao = new ConfiguracaoUsuario(configuracaoPadrao);

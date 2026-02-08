@@ -17,7 +17,7 @@ public class UsuarioCriadoResponse {
 
 
     public UsuarioCriadoResponse(Usuario usuario){
-        this.idUsuario = usuario.getIdUsuario();
+        this.idUsuario = UUID.fromString(usuario.getIdUsuario());
         this.email =  usuario.getEmail();
         this.configuracao = new ConfiguracaoUsuarioResponse(usuario.getConfiguracao());
         this.status =  usuario.getStatus();
