@@ -3,29 +3,50 @@ package dev.wakandaacademy.produdoro.handler;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 @RestControllerAdvice
 public class ResponseEntityExceptionHandler {
+
     @ExceptionHandler(APIException.class)
-    public ResponseEntity<ErrorApiResponse> handlerGenericException(APIException ex){
-        // Trata exceções do tipo APIException e delega a construção da resposta à própria exceção
+    public ResponseEntity<ErrorApiResponse> handlerGenericException(APIException ex) {
         return ex.buildErrorResponseEntity();
     }
+
+    // 🔥 ESSE MÉTODO FAZ O SWAGGER FUNCIONAR COM VALIDAÇÃO
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(errors);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorApiResponse> handlerGenericException(Exception ex){
-        //tratamento dessa exceção
-        //joga exceção no log
+    public ResponseEntity<ErrorApiResponse> handlerGenericException(Exception ex) {
 
         log.error("Exception: ", ex);
+
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ErrorApiResponse.builder()
                         .description("INTERNAL SERVER ERROR!")
                         .message("POR FAVOR INFORME AO ADMINISTRADOR DO SISTEMA")
                         .build());
-
-
     }
 }
